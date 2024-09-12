@@ -1,0 +1,108 @@
+.catalog {
+    background-color: #f9f9f9;
+    padding: 40px;
+    min-height: 100vh;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    position: relative;
+    z-index: 1;
+  }
+  
+  h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  /* Search bar container */
+  .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  /* Search input field */
+  .search-input {
+    padding: 10px 15px;
+    font-size: 1.1em;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 400px;
+    outline: none;
+    transition: all 0.3s ease;
+    z-index: 2;
+  }
+  
+  .search-input:focus {
+    border-color: #666;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Search icon styling */
+  .search-icon {
+    font-size: 1.2em;
+    position: absolute;
+    right: 37.5%;
+    color: #999;
+    cursor: pointer;
+    z-index: 3; 
+  }
+  
+  /* Flexbox layout for displaying the book cards */
+  .book-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  /* Styling for individual book cards */
+  .book-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 20px;
+    width: 250px;
+    text-align: left;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .book-card h3 {
+    color: #555;
+    font-size: 1.5em;
+    margin-bottom: 8px;
+    z-index: 2;
+  }
+  
+  .book-card p {
+    font-size: 1.1em;
+    color: #000;
+    margin-bottom: 10px;
+    z-index: 2;
+  }
+  
+  .book-card p:last-child {
+    font-weight: bold;
+    color: #32cd32;
+    z-index: 2;
+  }
+  
+  .book-card p:last-child:not(:before) {
+    color: #ff6347;
+  }
+  
+  

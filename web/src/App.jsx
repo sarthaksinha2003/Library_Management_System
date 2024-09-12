@@ -10,6 +10,7 @@ import PageNotImplemented from "./pages/pageEmpty";
 
 import DashboardPage from "@/pages/dashboard";
 import CommonHeader from "@/Components/Header";
+import Catalog from "./pages/Catalog/catalog";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -48,6 +49,10 @@ const App = () => {
         {
           path: "/dashboard",
           element: <DashboardPage />,
+        },
+        {
+          path: "/catalog",
+          element: <Catalog />,
         },
         {
           path: "/contact",
