@@ -1,0 +1,29 @@
+.reports-section {
+  padding: 40px;
+  background-color: #f9f9f9;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.reports-section h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.chart-item {
+  flex: 1;
+  max-width: 500px; /* Adjust as needed */
+  min-width: 300px; /* Ensure it doesn't get too small */
+}
+
+.chart-item canvas {
+  width: 100% !important; /* Ensure canvas uses full width of container */
+}

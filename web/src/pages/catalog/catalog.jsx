@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import debounce from "lodash.debounce";
 import "./Catalog.css";
+import ReportPage from "../../ReportPage"; // Import the ReportsPage component
 
 const Catalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -95,6 +96,10 @@ const Catalog = () => {
               <div className="book-card" key={book._id}>
                 <h3>{book.title}</h3>
                 <p className="author">Author: {book.author}</p>
+                {/* Display availability status */}
+                <p className={`availability ${book.available ? 'available' : 'unavailable'}`}>
+                  {book.available ? "Available" : "Not Available"}
+                </p>
               </div>
             ))
           ) : (
@@ -102,6 +107,9 @@ const Catalog = () => {
           )}
         </div>
       )}
+
+      {/* Include the ReportsPage component at the bottom */}
+      <ReportPage />
     </div>
   );
 };

@@ -12,6 +12,7 @@ import DashboardPage from "@/pages/dashboard";
 import CommonHeader from "@/Components/Header";
 import Catalog from "./pages/Catalog/catalog";
 import BookCatalog from "./bookcatalog";
+import ReportsPage from "./ReportPage";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -58,6 +59,10 @@ const App = () => {
         {
           path: "/bookcatalog",
           element: <BookCatalog/>,
+        },
+        {
+          path: "/reports",
+          element: <ReportsPage />,
         },
         {
           path: "/contact",
