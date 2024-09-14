@@ -46,7 +46,7 @@ const Catalog = () => {
       {/* Welcome message shown before the search bar */}
       <h1 className="welcome-message">
         {showPopularBooks && books.length === 0
-          ? "Welcome to the Library Catalog"
+          ? "Welcome to the Library"
           : ""}
       </h1>
 

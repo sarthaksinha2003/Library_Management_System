@@ -74,6 +74,10 @@ const ReportsPage = () => {
       },
       y: {
         beginAtZero: true,
+        min: 0,
+        ticks: {
+          stepSize: 1, // Increment by 1
+        },
         grid: {
           display: true,
         },
@@ -105,6 +109,7 @@ const ReportsPage = () => {
       },
     },
   };
+  
 
   return (
     <div className="reports-section">
