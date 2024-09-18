@@ -167,6 +167,7 @@ h1 {
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
+
 @media (max-width: 768px) {
   .search-input {
     width: 100%;
@@ -179,7 +180,7 @@ h1 {
   .featured-book {
     width: 100%;
   }
-/* kldf */
+
 .available {
   color: green;
   font-weight: bold;
