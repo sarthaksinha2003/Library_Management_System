@@ -13,13 +13,13 @@ import CommonHeader from "@/Components/Header";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ForgotPassword from "./pages/forgot";
 
 const BlankLayout = () => {
   return (
     <>
       <CommonHeader />
       <main>
-        <div className="bg-overlay"></div>
         <Outlet />
         <ToastContainer />
       </main>
@@ -44,6 +44,10 @@ const App = () => {
         {
           path: "/register",
           element: <RegisterPage />,
+        },
+        {
+          path: "/forgot",
+          element: <ForgotPassword />
         },
         {
           path: "/dashboard",

@@ -11,3 +11,7 @@ export const loginService = (data) => {
 export const registerService = (data) => {
   return _post("/api/register", data);
 };
+
+export const forgotPasswordService = (data) =>{
+  return _post("/api/forget/password", data)
+}
