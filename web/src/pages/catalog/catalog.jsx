@@ -7,6 +7,7 @@ import ReportPage from "../../ReportPage"; // Import the ReportsPage component
 const Catalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [books, setBooks] = useState([]);
+  const [popularBooks, setPopularBooks] = useState([]); // Separate state for popular books
   const [showPopularBooks, setShowPopularBooks] = useState(true);
 
   const fetchBooks = async (query) => {
@@ -41,13 +42,33 @@ const Catalog = () => {
     setSearchTerm(event.target.value);
   };
 
+  // Fetch popular books on component load
+  useEffect(() => {
+    const fetchPopularBooks = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:5001/books/search?query=`
+        );
+        // Sort books by borrowCount and take the top 5
+        const sortedBooks = response.data.sort(
+          (a, b) => b.borrowCount - a.borrowCount
+        );
+        setPopularBooks(sortedBooks.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching popular books:", error);
+      }
+    };
+
+    if (showPopularBooks) {
+      fetchPopularBooks();
+    }
+  }, [showPopularBooks]);
+
   return (
     <div className="catalog">
       {/* Welcome message shown before the search bar */}
       <h1 className="welcome-message">
-        {showPopularBooks && books.length === 0
-          ? "Welcome to the Library"
-          : ""}
+        {showPopularBooks && books.length === 0 ? "Welcome to the Library" : ""}
       </h1>
 
       <div className="search-container">
@@ -65,28 +86,12 @@ const Catalog = () => {
         <div className="featured-books">
           <h2>Popular Books</h2>
           <div className="featured-book-container">
-            <div className="featured-book featured-book-top">
-              <h3>Alice in Wonderland</h3>
-              <p className="author">Lewis Carroll</p>
-            </div>
-            <div className="featured-book featured-book-top">
-              <h3>Bhagavad Gita</h3>
-              <p className="author">Maharishi Veda Vyasa</p>
-            </div>
-          </div>
-          <div className="featured-book-container">
-            <div className="featured-book featured-book-bottom">
-              <h3>The Catcher in the Rye</h3>
-              <p className="author">J.D. Salinger</p>
-            </div>
-            <div className="featured-book featured-book-bottom">
-              <h3>Ramayana</h3>
-              <p className="author">Valmiki</p>
-            </div>
-            <div className="featured-book featured-book-bottom">
-              <h3>The Hobbit</h3>
-              <p className="author">J.R.R. Tolkien</p>
-            </div>
+            {popularBooks.map((book) => (
+              <div className="featured-book" key={book._id}>
+                <h3>{book.title}</h3>
+                <p className="author">{book.author}</p>
+              </div>
+            ))}
           </div>
         </div>
       ) : (
@@ -97,7 +102,11 @@ const Catalog = () => {
                 <h3>{book.title}</h3>
                 <p className="author">Author: {book.author}</p>
                 {/* Display availability status */}
-                <p className={`availability ${book.available ? 'available' : 'unavailable'}`}>
+                <p
+                  className={`availability ${
+                    book.available ? "available" : "unavailable"
+                  }`}
+                >
                   {book.available ? "Available" : "Not Available"}
                 </p>
               </div>

@@ -47,7 +47,7 @@ const CommonHeader = (props) => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <Link to="/catalog">Catalog</Link>
+                <Link to="/catalog">Reports</Link>
               </li>
               <li>
                 <Link to="/profile">

@@ -10,7 +10,7 @@ import PageNotImplemented from "./pages/pageEmpty";
 
 import DashboardPage from "@/pages/dashboard";
 import CommonHeader from "@/Components/Header";
-import Catalog from "./pages/Catalog/catalog";
+import Catalog from "./pages/catalog/catalog";
 import BookCatalog from "./bookcatalog";
 import ReportsPage from "./ReportPage";
 
