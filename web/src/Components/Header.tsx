@@ -47,6 +47,9 @@ const CommonHeader = (props) => {
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
+                <Link to="/catalog">Reports</Link>
+              </li>
+              <li>
                 <Link to="/profile">
                   <img
                     src={currentUser?.avatarUrl || "/avatar.png"}
