@@ -12,7 +12,7 @@ from root.static import G_ACCESS_EXPIRES, G_REFRESH_EXPIRES
 
 G_API_URL = "http://localhost:5000"
 
-# ℹ️ It is recommended to use environment variables for the secret key
+# ℹ It is recommended to use environment variables for the secret key
 G_JWT_ACCESS_SECRET_KEY = "ABCDEFGHIJKLMN"
 LOCAL_MONGO_URI = "mongodb://localhost:27017"
 LOCAL_MONGO_DATABASE = "gla1"

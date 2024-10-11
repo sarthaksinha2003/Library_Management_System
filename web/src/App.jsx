@@ -13,13 +13,24 @@ import CommonHeader from "@/Components/Header";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
 
 const BlankLayout = () => {
+  const [data ,setData] = useState("");
+  async function getData(){
+    let res = await axios.get("https://www.dbooks.org/api/recent");
+    console.log(res.data,"mydta2");
+    
+    setData(res.data);
+  }
+  useEffect(()=>{
+    getData()
+  },[]);
   return (
     <>
       <CommonHeader />
       <main>
-        <div className="bg-overlay"></div>
+        <div className=""></div>
         <Outlet />
         <ToastContainer />
       </main>
