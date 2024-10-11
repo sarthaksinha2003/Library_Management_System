@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/material": "^6.1.1",
@@ -17,7 +18,17 @@
     "atob": "^2.1.2",
     "axios": "^1.7.7",
     "chart.js": "^4.4.4",
+=======
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "atob": "^2.1.2",
+    "axios": "^1.7.4",
+    "chart.js": "^4.4.4",
+    "chartjs-plugin-datalabels": "^2.2.0",
+>>>>>>> f608e430c01d78c756bc8b71f7a1cac480afd9f5
     "lodash": "^4.17.21",
+    "lodash.debounce": "^4.0.8",
     "react": "^18.3.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",

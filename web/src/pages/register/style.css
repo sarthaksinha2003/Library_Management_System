@@ -4,19 +4,22 @@
   justify-content: center;
   height: 90vh;
   overflow-y: auto;
+  background-color: #aae0a7;
+;
 }
 
 .register-form {
   width: clamp(300px, 40%, 500px);
   padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #ffffff;
+  border: 4px solid #000000;
+  border-radius: 10px ;
+  background-color: #62c870;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .register-form form {
   margin-bottom: 20px;
+ 
 }
 
 .register-form h2 {
@@ -26,6 +29,7 @@
 
 .register-form .register-btn {
   margin-bottom: 20px;
+  border: solid 2px black;
 }
 
 .forgot-password-link {

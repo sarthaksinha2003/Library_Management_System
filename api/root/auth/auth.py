@@ -190,6 +190,7 @@ class ForgetPassword(Resource):
     def post(self, suid, suser):
         input = request.get_json(silent=True)
         email = input["email"]
+        print(input)
 
         # Add the validation logic using the marshmallow schema
         # ... code here
@@ -205,7 +206,7 @@ class ForgetPassword(Resource):
                 "payload": {},
             }
 
-        newPassword = input["newPassword"]
+        newPassword = input["password"]
         hashedPassword = bcryptPasswordHash(newPassword)
 
         # For security reasons, you can set the default password to false

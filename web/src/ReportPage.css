@@ -1,0 +1,67 @@
+.reports-section {
+  font-family: Arial, sans-serif;
+  padding: 40px;
+  background-color: #f9f9f9;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.reports-section h2 {
+  color: black;
+  margin-bottom: 50px;
+}
+
+.chart-container {
+  display: flex;
+  flex-direction: column; 
+  gap: 20px;
+}
+
+.chart-row {
+  display: flex; 
+  justify-content: space-around; 
+  gap: 20px; 
+  margin-bottom: 20px;
+}
+
+
+.chart-item {
+  flex: 1; 
+  max-width: 48%; 
+  min-width: 300px; 
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px; 
+  padding: 20px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box; 
+  height: auto; 
+}
+.chart-item .bar-chart{
+    padding: 100px;
+}
+
+
+.chart-item canvas {
+  width: 100% !important; 
+  height: auto !important; 
+}
+.availability-description {
+  margin-top: 88px; 
+  color: #555; 
+  font-size: 19px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .chart-row {
+    flex-direction: column; 
+    align-items: center; 
+  }
+  
+  .chart-item {
+    max-width: 100%;
+  }
+}

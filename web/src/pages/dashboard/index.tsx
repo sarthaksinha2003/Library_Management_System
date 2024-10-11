@@ -86,4 +86,9 @@ const LibraryDashboard: React.FC = () => {
   );
 };
 
+<<<<<<< HEAD
 export default LibraryDashboard;
+=======
+export default SamplePage;
+ 
+>>>>>>> f608e430c01d78c756bc8b71f7a1cac480afd9f5

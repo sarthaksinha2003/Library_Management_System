@@ -69,9 +69,7 @@ const LoginForm = () => {
           Login
         </button>
 
-        <Link className="forgot-password-link" to="/forget-password">
-          Forgot Password?
-        </Link>
+        <Link to={"/forgot"}>Forgot your password?</Link>
       </form>
     </div>
   );
@@ -86,3 +84,9 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+
+
+
+
+
