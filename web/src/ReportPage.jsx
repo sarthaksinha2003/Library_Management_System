@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Bar, Pie } from "react-chartjs-2";
+import { Bar, Pie, Line } from "react-chartjs-2";
 import 'chart.js/auto';
 import axios from "axios";
+import 'chartjs-plugin-datalabels';
 import "./ReportPage.css";
 
 const ReportsPage = () => {
   const [booksData, setBooksData] = useState([]);
 
-  // Fetch books data from MongoDB
+  
   useEffect(() => {
     const fetchBooksData = async () => {
       try {
-        const response = await axios.get("http://localhost:5001/books/search?query="); // Fetch all books
-        setBooksData(response.data); // Update state with fetched data
+        const response = await axios.get("http://localhost:5001/books/search?query=");
+        setBooksData(response.data); 
       } catch (error) {
         console.error("Error fetching books data:", error);
       }
@@ -20,55 +21,76 @@ const ReportsPage = () => {
     fetchBooksData();
   }, []);
 
-  // Calculate available and not available counts
+  
   const availableCount = booksData.filter(book => book.available).length;
   const notAvailableCount = booksData.length - availableCount;
 
-  // Group books by genre and count borrowed books per genre
+  
   const genreDemandData = booksData.reduce((acc, book) => {
     if (!acc[book.genre]) {
       acc[book.genre] = 0;
     }
     if (!book.available) {
-      acc[book.genre] += 1; // Increment demand for borrowed books
+      acc[book.genre] += 1;
     }
     return acc;
   }, {});
 
-  // Sort books by borrowCount and limit to top 10
+  
   const topBorrowedBooks = booksData
     .sort((a, b) => b.borrowCount - a.borrowCount)
-    .slice(0, 10); // Limit to top 10 most borrowed books
+    .slice(0, 10); 
 
-  // Data for the bar chart showing availability
+  
   const barChartData = {
     labels: ['Available', 'Not Available'],
     datasets: [
       {
         label: 'Books Availability',
-        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)'],
-        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+        backgroundColor: [
+          'rgba(75, 192, 192, 0.6)', 
+          'rgba(255, 99, 132, 0.6)'  
+        ],
+        borderColor: [
+          'rgba(75, 192, 192, 1)', 
+          'rgba(255, 99, 132, 1)'
+        ],
         borderWidth: 1,
         data: [availableCount, notAvailableCount],
+        barPercentage: 0.6, 
       }
     ]
   };
 
-  // Data for the pie chart showing genres in demand
+  
+  const colors = [
+    'rgba(75, 192, 192, 0.6)', 
+    'rgba(255, 99, 132, 0.6)', 
+    'rgba(153, 102, 255, 0.6)', 
+    'rgba(255, 206, 86, 0.6)', 
+    'rgba(54, 162, 235, 0.6)',
+    'rgba(255, 159, 64, 0.6)',
+    'rgba(201, 203, 207, 0.6)',
+    'rgba(255, 99, 71, 0.6)',
+    'rgba(255, 215, 0, 0.6)',
+    'rgba(0, 255, 127, 0.6)'
+  ];
+
+  
   const pieChartGenreData = {
-    labels: Object.keys(genreDemandData), // Genre names
+    labels: Object.keys(genreDemandData),
     datasets: [
       {
         label: 'Books in Demand by Genre',
-        backgroundColor: ['rgba(75, 192, 192, 0.6)', 'rgba(255, 99, 132, 0.6)', 'rgba(153, 102, 255, 0.6)', 'rgba(255, 206, 86, 0.6)', 'rgba(54, 162, 235, 0.6)'],
-        borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)'],
+        backgroundColor: Object.keys(genreDemandData).map((_, index) => colors[index % colors.length]),
+        borderColor: Object.keys(genreDemandData).map((_, index) => colors[index % colors.length].replace('0.6', '1')),
         borderWidth: 1,
-        data: Object.values(genreDemandData), // Demand counts by genre
+        data: Object.values(genreDemandData),
       }
     ]
   };
 
-  // Data for the top 10 most borrowed books
+  
   const mostBorrowedData = {
     labels: topBorrowedBooks.map(book => book.title),
     datasets: [
@@ -84,7 +106,34 @@ const ReportsPage = () => {
     ]
   };
 
-  // Chart options with fix for the tooltip in pie chart
+  
+  const borrowingTrendsData = booksData.reduce((acc, book) => {
+    if (book.borrowHistory && book.borrowHistory.length > 0) {
+      book.borrowHistory.forEach(borrow => {
+        const date = new Date(borrow.date).toLocaleDateString();
+        if (!acc[date]) {
+          acc[date] = 0;
+        }
+        acc[date] += 1;
+      });
+    }
+    return acc;
+  }, {});
+
+
+  const lineChartData = {
+    labels: Object.keys(borrowingTrendsData),
+    datasets: [
+      {
+        label: 'Borrowing Trends Over Time',
+        data: Object.values(borrowingTrendsData),
+        fill: false,
+        borderColor: 'rgba(54, 162, 235, 1)',
+        tension: 0.1,
+      }
+    ]
+  };
+
   const options = {
     responsive: true,
     scales: {
@@ -109,9 +158,18 @@ const ReportsPage = () => {
           label: function (context) {
             let label = context.label || '';
             if (label) label += ': ';
-            if (context.raw !== null) label += context.raw; // Fix for pie chart tooltips
+            if (context.raw !== null) label += context.raw;
             return label;
           },
+        },
+      },
+
+      datalabels: {
+        anchor: 'end',
+        align: 'end',
+        color: '#333',
+        formatter: (value) => {
+          return value;
         },
       },
     },
@@ -121,18 +179,29 @@ const ReportsPage = () => {
     <div className="reports-section">
       <h2>Reports</h2>
       <div className="chart-container">
-        
-        {/* Books in Demand by Genre Pie Chart */}
-        <div className="chart-item pie-chart">
-          <h3>Books in Demand by Genre (Pie Chart)</h3>
-          <Pie data={pieChartGenreData} options={options} />
-        </div>
+        <div className="chart-row">
+          {/* Books in Demand by Genre Pie Chart */}
+          <div className="chart-item pie-chart">
+            <h3>Books in Demand by Genre (Pie Chart)</h3>
+            <Pie data={pieChartGenreData} options={options} />
+          </div>
 
-        <div className="bar-charts">
           {/* Book Availability Bar Chart */}
           <div className="chart-item bar-chart">
             <h3>Book Availability Report (Bar Chart)</h3>
             <Bar data={barChartData} options={options} />
+            <p className="availability-description">
+              This chart provides insights into the availability of books in our library. A higher number of available books indicates better accessibility for our readers. 
+              Explore our collection and find your next read!
+            </p>
+          </div>
+        </div>
+
+        <div className="chart-row">
+          {/* Borrowing Trends Over Time Line Chart */}
+          <div className="chart-item line-chart">
+            <h3>Borrowing Trends Over Time (Line Chart)</h3>
+            <Line data={lineChartData} options={options} />
           </div>
 
           {/* Most Borrowed Books Bar Chart - Top 10 */}
