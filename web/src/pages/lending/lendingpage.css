@@ -1,0 +1,65 @@
+.lending-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto;
+  }
+  
+  .lending-page .lending-form {
+    width: clamp(300px, 40%, 500px);
+    padding: 2rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .lending-page .lending-form form {
+    margin-bottom: 20px;
+  }
+  
+  .lending-page .lending-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .lending-page .lending-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .lending-page .lending-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .lending-page .lending-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+  
+  .lending-page .lending-form button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .lending-page .lending-form button:hover {
+    background-color: #218838;
+  }
+  
+  .lending-page .lending-form p {
+    margin-top: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+  

@@ -16,11 +16,13 @@ import ReportsPage from "./ReportPage";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-<<<<<<< HEAD
 import axios from 'axios';
-=======
 import ForgotPassword from "./pages/forgot";
->>>>>>> f608e430c01d78c756bc8b71f7a1cac480afd9f5
+import LendingPage from "./pages/lending/LendingPage";
+import ReturnPage from "./pages/returnpage/returnPage"; 
+
+
+// import ForgotPassword from "./pages/forgot";
 
 const BlankLayout = () => {
   const [data ,setData] = useState("");
@@ -37,10 +39,7 @@ const BlankLayout = () => {
     <>
       <CommonHeader />
       <main>
-<<<<<<< HEAD
         <div className=""></div>
-=======
->>>>>>> f608e430c01d78c756bc8b71f7a1cac480afd9f5
         <Outlet />
         <ToastContainer />
       </main>
@@ -89,6 +88,14 @@ const App = () => {
         {
           path: "/contact",
           element: <main>Contact Us</main>,
+        },
+        { 
+          path: "/lending", 
+          element: <LendingPage /> 
+        },
+        { 
+          path: "/returnpage", 
+          element: <ReturnPage /> 
         },
         {
           path: "/services",

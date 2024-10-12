@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './style.css';
 import MetricsChart from '../../components/MetricsChart';
+import { Link } from 'react-router-dom';
 
 const LibraryDashboard: React.FC = () => {
   const books = [
@@ -23,7 +24,7 @@ const LibraryDashboard: React.FC = () => {
   };
 
   const handleSearchClick = () => {
-    window.location.href = "/search-catalog"; // Redirect to search catalog page
+    window.location.href = "/catalog"; // Redirect to search catalog page
   };
 
   return (
@@ -33,9 +34,9 @@ const LibraryDashboard: React.FC = () => {
         <h2 className="sidebar-title">Library</h2>
 <hr />
         <ul className="sidebar-options">
-          <li>•  Home</li>
-          <li>•  Lending</li>
-          <li>•  Query</li>
+          <li><Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>•  Home</Link></li>
+          <li><Link to="/lending" style={{ textDecoration: 'none', color: 'inherit' }}>•  Lending</Link></li>
+          <li><Link to="/returnpage" style={{ textDecoration: 'none', color: 'inherit' }}>•  Return Books</Link></li>
           <li>•  My Books</li>
           <li>•  Notifications</li>
           <li>•  Settings</li>
@@ -85,10 +86,4 @@ const LibraryDashboard: React.FC = () => {
     </div>
   );
 };
-
-<<<<<<< HEAD
 export default LibraryDashboard;
-=======
-export default SamplePage;
- 
->>>>>>> f608e430c01d78c756bc8b71f7a1cac480afd9f5

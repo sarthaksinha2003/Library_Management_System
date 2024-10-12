@@ -20,9 +20,9 @@ const CommonHeader = (props) => {
           <li>
             <Link to="/about">About</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/contact">Contact</Link>
-          </li>
+          </li> */}
 
           {/* Based on the user state, show the login and register links */}
           {!isLoggedIn && (

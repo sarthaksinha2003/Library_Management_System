@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 import { forgotPasswordService } from '../../services';
 import { showToast } from "@/utils/toast";
+import { useNavigate } from 'react-router-dom'; // Assuming you're using react-router-dom for navigation
 
 
 const ForgotPassword = () => {
+    const navigate = useNavigate(); // Hook to programmatically navigate
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,9 +23,11 @@ const ForgotPassword = () => {
             return;
         }
 
+        // Redirect to login page upon successful reset
+        navigate('/login'); // Replace '/login' with the actual path to your login page
     }
-    return (
 
+    return (
         <div className="login-form reset-form">
             <form onSubmit={handleSubmit}>
                 <h2>Reset Password</h2>
@@ -58,4 +62,4 @@ const ForgotPassword = () => {
     )
 }
 
-export default ForgotPassword
+export default ForgotPassword;
